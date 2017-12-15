@@ -8,7 +8,8 @@ class Compress:
         self.__m = m
 
     def compress(self, data):
-        self.__intAry = self.__str2int(data)
+        buf = "1{0}".format(data)
+        self.__intAry = self.__str2int(buf)
         self.__intAry = self.__radixconvert(self.__intAry, self.__n, self.__m)
         self.__compData = self.__compress(self.__intAry)
         return self.__compData
@@ -17,7 +18,7 @@ class Compress:
         self.__intAry = self.__uncompress(data)
         self.__intAry = self.__radixconvert(self.__intAry, self.__m, self.__n)
         self.__uncompData = self.__int2str(self.__intAry)
-        return self.__uncompData
+        return self.__uncompData[1:]
 
     def __radixconvert(self, ary, n, m):
         r = []
